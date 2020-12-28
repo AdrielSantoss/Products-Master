@@ -1,0 +1,30 @@
+.sidenav-container{
+    display: flex;
+}
+.sidenav{
+    height: calc(100vh - 64px);
+    width: 300px;
+    background-color: rgb(85, 67, 128);
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+span{
+    padding: 20px;
+    font-size: 13pt;
+    display: flex;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+span:hover{
+    background-color: rgb(83, 60, 136);
+    cursor: pointer;
+}
+mat-icon{
+    margin-right: 10px;
+}
+.content{
+    margin-left: 50px;
+    margin-top: 50px;
+}
