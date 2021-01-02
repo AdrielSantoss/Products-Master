@@ -16,7 +16,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ProductsComponent } from './components/products/products.component';
+import { UsersComponent } from './components/users/users.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,7 +28,7 @@ import { ProductsComponent } from './components/products/products.component';
     HeaderComponent,
     SideNavComponent,
     LoginComponent,
-    ProductsComponent
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,9 @@ import { ProductsComponent } from './components/products/products.component';
     MatIconModule,
     MatSidenavModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

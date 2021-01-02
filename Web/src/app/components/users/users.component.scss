@@ -1,0 +1,22 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    margin: 20px;
+    padding: 5px;
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+}
+.user-email{
+    font-size: 18px;
+}
+.btns{
+    display: flex;
+}
+.btns button{
+    margin: 5px;
+}

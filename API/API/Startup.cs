@@ -35,6 +35,7 @@ namespace API
                 opts.UseSqlite(coneection);
             });
             services.AddScoped<IRepository, Repository>();
+            services.AddCors();
 
             services.AddControllers();
         }
@@ -50,6 +51,7 @@ namespace API
             //app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthorization();
 

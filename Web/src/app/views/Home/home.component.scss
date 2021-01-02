@@ -13,3 +13,12 @@ table {
 .delete > i {
     color: #e35e6b;
 }
+.home-container{
+    display: flex;
+}
+.user-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 500px;
+}

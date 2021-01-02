@@ -1,1 +1,13 @@
-<app-side-nav></app-side-nav> 
+<div class="home-container">
+    <app-side-nav></app-side-nav>
+
+    <div *ngFor="let i of users">
+        <div class="row">
+            <div class="col">
+                <div class="user-container">
+                    <app-users [user]="i"></app-users>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
