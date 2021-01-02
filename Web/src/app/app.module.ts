@@ -15,6 +15,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ProductsComponent } from './components/products/products.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import {MatTableModule} from '@angular/material/table';
     HomeComponent,
     HeaderComponent,
     SideNavComponent,
-    LoginComponent
+    LoginComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import {MatTableModule} from '@angular/material/table';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
