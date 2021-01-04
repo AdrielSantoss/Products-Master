@@ -1,5 +1,8 @@
+using API.Authentication;
 using API.Data;
 using API.Repositories;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,10 +12,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using OpenIddict.Validation.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static OpenIddict.Abstractions.OpenIddictConstants;
+using static OpenIddict.Server.OpenIddictServerEvents;
 
 namespace API
 {
@@ -24,20 +30,38 @@ namespace API
         }
 
         public IConfiguration Configuration { get; }
+        private readonly IWebHostEnvironment _environment;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+            var apiOrigin = Configuration["PublicOrigin:PublicOrigin"];
             var coneection = Configuration["connectionString:DefaultConn"];
 
             services.AddDbContext<DatabaseContext>(opts =>
             {
                 opts.UseSqlite(coneection);
+
+                opts.UseOpenIddict();
             });
+
+            services.AddAuthentication(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)
+             .AddOpenIdConnect("Bearer", options =>
+             {
+                 options.ClientId = "diniz.portal";
+                 options.Authority = apiOrigin;
+                 options.RequireHttpsMetadata = !_environment.IsDevelopment();
+             })
+             .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationHandler.SchemeName, null);
+
+            
             services.AddScoped<IRepository, Repository>();
-            services.AddCors();
+        
 
             services.AddControllers();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +76,7 @@ namespace API
 
             app.UseRouting();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
 
             app.UseAuthorization();
 

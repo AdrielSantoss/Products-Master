@@ -6,18 +6,19 @@
         <div class="login-text">
             <span class="text-muted">Por favor, entre com sua conta</span>
         </div>
-        <form action="" class="login-form">
+        <form action="" [formGroup]="loginForm" class="login-form" (submit)="login()">
             <label for="email">Email</label>
-            <input type="email" class="form-control">
+            <input type="email" class="form-control" formControlName="username" >
             
             <label for="password">Password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" formControlName="password">
             <div class="login-text">
                 <span class="text-muted">Não possui uma conta? <a href="">clique aqui</a></span>
             </div>
             <div class="buttons">
-                <button type="button" class="btn btn-primary">Entrar</button>
+                <button type="submit" class="btn btn-primary" [disabled]="busy">Entrar</button>
             </div>
+            {{errorMessage}}
         </form>
     </div>
 </main>

@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { LoginComponent } from './views/Login/login.component';
 
 import { SideNavComponent } from './components/Side-nav/side-nav.component';
@@ -19,6 +20,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { UsersComponent } from './components/users/users.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -40,9 +43,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
